@@ -1,4 +1,4 @@
-# fullstack-helsinki
+# Fullstack - Helsinki - 2023
 
 In this repo im learning new technologies to become a FullStack developer.
 
