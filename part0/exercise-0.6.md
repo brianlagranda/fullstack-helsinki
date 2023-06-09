@@ -8,7 +8,8 @@
           server-->>browser: STATUS 201 Created
           deactivate server
 	  
-	  Note right of server: The new note is fetched in the JavaScript file before doing the request of the spa.js file from the browser to the server
+	  Note right of server: The new note is fetched in the JavaScript 
+	  Note right of server: file before doing the request of the spa.js file from the browser to the server
 		  
           browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
           activate server
