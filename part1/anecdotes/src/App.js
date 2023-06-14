@@ -19,7 +19,12 @@ const AnecdoteMostVoted = ({ anecdotes, votes }) => {
   const mostVotedIndex = votes.indexOf(maxVotes);
 
   if (maxVotes === 0) {
-    return <p>No votes yet</p>;
+    return (
+      <>
+        <h2>Anecdote with most votes</h2>
+        <p>No votes yet</p>
+      </>
+    );
   }
 
   return (
