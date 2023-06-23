@@ -33,19 +33,39 @@ const App = () => {
   const addPhoneNumber = (e) => {
     e.preventDefault();
 
-    if (!persons.find((person) => person.name === newName)) {
-      const person = {
+    const isContact = persons.find((person) => person.name === newName);
+
+    if (isContact) {
+      const confirmation = window.confirm(
+        `${newName} is already added to phonebook, replace the old number with a new one?`
+      );
+
+      if (confirmation) {
+        const updatedPerson = { ...isContact, number: newNumber };
+
+        personService
+          .update(isContact.id, updatedPerson)
+          .then((returnedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.id === returnedPerson.id ? returnedPerson : person
+              )
+            );
+            setNewName("");
+            setNewNumber("");
+          });
+      }
+    } else {
+      const newPerson = {
         name: newName,
         number: newNumber,
       };
 
-      personService.create(person).then((returnedPerson) => {
+      personService.create(newPerson).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
         setNewName("");
         setNewNumber("");
       });
-    } else {
-      alert(`${newName} is already added to phonebook`);
     }
   };
 
