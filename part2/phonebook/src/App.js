@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
+import Notification from "./components/Notification";
 
 import personService from "./services/persons";
 
@@ -11,6 +12,7 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     personService.getAll().then((initialPersons) => {
@@ -53,6 +55,15 @@ const App = () => {
             );
             setNewName("");
             setNewNumber("");
+            setErrorMessage(`${isContact.name} has been succesfully updated`);
+            setTimeout(() => {
+              setErrorMessage(null);
+            }, 5000);
+          })
+          .catch((error) => {
+            setErrorMessage(
+              `Error: Information of ${isContact.name} has already been removed from server`
+            );
           });
       }
     } else {
@@ -61,11 +72,17 @@ const App = () => {
         number: newNumber,
       };
 
-      personService.create(newPerson).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson));
-        setNewName("");
-        setNewNumber("");
-      });
+      personService
+        .create(newPerson)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
+          setNewName("");
+          setNewNumber("");
+          setErrorMessage(`${newPerson.name} has been succesfully added`);
+          setTimeout(() => {
+            setErrorMessage(null);
+          }, 5000);
+        });
     }
   };
 
@@ -88,7 +105,10 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={errorMessage} />
+
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
+
       <h3>Add a new</h3>
       <PersonForm
         newName={newName}
@@ -97,6 +117,7 @@ const App = () => {
         handlePhoneChange={handlePhoneChange}
         addPhoneNumber={addPhoneNumber}
       />
+
       <h3>Numbers</h3>
       <Persons numbersToShow={numbersToShow} deleteContact={deleteContact} />
     </div>
