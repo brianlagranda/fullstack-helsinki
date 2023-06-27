@@ -1,5 +1,5 @@
 const Countries = ({ countries }) => {
-  if (countries.length > 10)
+  if (countries.length === 0)
     return <div>Too many matches, specify another filter</div>;
 
   if (countries.length === 1) {
@@ -8,9 +8,17 @@ const Countries = ({ countries }) => {
         {countries.map((country) => (
           <div key={country.name.common}>
             <h2>{country.name.common}</h2>
-            <div>{country.capital}</div>
+
+            <div>capital {country.capital}</div>
             <div>area {country.area}</div>
+
             <h3>languages</h3>
+            <ul>
+              {Object.values(country.languages).map((language) => (
+                <li key={language}>{language}</li>
+              ))}
+            </ul>
+
             <img src={country.flags.png} alt={country.name.common} />
           </div>
         ))}

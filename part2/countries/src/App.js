@@ -29,11 +29,14 @@ const App = () => {
       )
     : countries;
 
+  const finalCountriesToShow =
+    countriesToShow.length > 10 ? [] : countriesToShow;
+
   return (
     <div>
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
 
-      <Countries countries={countriesToShow} />
+      <Countries countries={finalCountriesToShow} />
     </div>
   );
 };
