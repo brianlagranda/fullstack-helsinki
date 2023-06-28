@@ -1,37 +1,67 @@
+import { useState } from "react";
+import Country from "./Country";
+import CapitalWeather from "./CapitalWeather";
+
 const Countries = ({ countries }) => {
-  if (countries.length === 0)
+  const [selectedCountry, setSelectedCountry] = useState(null);
+
+  const handleCountryClick = (country) => {
+    if (country === selectedCountry) {
+      setSelectedCountry(null);
+    } else {
+      setSelectedCountry(country);
+    }
+  };
+
+  if (countries.length === 0 || countries.length > 10)
     return <div>Too many matches, specify another filter</div>;
 
   if (countries.length === 1) {
+    const selectedCountry = countries[0];
+    const capital = selectedCountry.capital[0];
+    const countryCode = selectedCountry.cca2;
+
     return (
       <div>
-        {countries.map((country) => (
-          <div key={country.name.common}>
-            <h2>{country.name.common}</h2>
-
-            <div>capital {country.capital}</div>
-            <div>area {country.area}</div>
-
-            <h3>languages</h3>
-            <ul>
-              {Object.values(country.languages).map((language) => (
-                <li key={language}>{language}</li>
-              ))}
-            </ul>
-
-            <img src={country.flags.png} alt={country.name.common} />
-          </div>
-        ))}
+        <Country selectedCountry={selectedCountry} />
+        <CapitalWeather capital={capital} countryCode={countryCode} />
       </div>
+    );
+  }
+
+  if (selectedCountry) {
+    return (
+      <>
+        <h2>Countries:</h2>
+        <ul>
+          {countries.map((country) => (
+            <li key={country.name.common}>
+              {country === selectedCountry ? (
+                <Country selectedCountry={selectedCountry} />
+              ) : (
+                <>
+                  {country.name.common}{" "}
+                  <button onClick={() => handleCountryClick(country)}>
+                    show
+                  </button>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      </>
     );
   }
 
   return (
     <>
-      <h2>Countries: </h2>
+      <h2>Countries:</h2>
       <ul>
         {countries.map((country) => (
-          <li key={country.name.common}>{country.name.common}</li>
+          <li key={country.name.common}>
+            {country.name.common}{" "}
+            <button onClick={() => handleCountryClick(country)}>show</button>
+          </li>
         ))}
       </ul>
     </>

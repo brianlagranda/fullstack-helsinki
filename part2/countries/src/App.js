@@ -1,25 +1,25 @@
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 import Filter from "./components/Filter";
 import Countries from "./components/Countries";
 import countriesService from "./services/countries";
 
 const App = () => {
-  const [countries, setCountries] = useState([]);
   const [filter, setFilter] = useState("");
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
     countriesService
       .getAll()
-      .then((response) => {
-        setCountries(response);
+      .then((initialCountries) => {
+        setCountries(initialCountries);
       })
       .catch((error) => {
-        console.error("Error to obtain countries: ", error);
+        console.error("Error obtaining countries: ", error);
       });
   }, []);
 
   const handleFilterChange = (e) => {
+    e.preventDefault();
     setFilter(e.target.value);
   };
 
@@ -29,14 +29,10 @@ const App = () => {
       )
     : countries;
 
-  const finalCountriesToShow =
-    countriesToShow.length > 10 ? [] : countriesToShow;
-
   return (
     <div>
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
-
-      <Countries countries={finalCountriesToShow} />
+      <Countries countries={countriesToShow} />
     </div>
   );
 };
