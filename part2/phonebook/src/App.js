@@ -61,9 +61,7 @@ const App = () => {
             }, 5000);
           })
           .catch((error) => {
-            setErrorMessage(
-              `Error: Information of ${isContact.name} has already been removed from server`
-            );
+            setErrorMessage(`Error: ${error.response.data.error}`);
           });
       }
     } else {
@@ -82,6 +80,9 @@ const App = () => {
           setTimeout(() => {
             setErrorMessage(null);
           }, 5000);
+        })
+        .catch((error) => {
+          setErrorMessage(`Error: ${error.response.data.error}`);
         });
     }
   };

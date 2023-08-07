@@ -4,7 +4,7 @@ const Notification = ({ message }) => {
   }
 
   const style = message.toLowerCase().includes("error") ? "error" : "success";
-  return <div className={style}>{message}</div>
+  return <div className={style}>{message}</div>;
 };
 
 export default Notification;
