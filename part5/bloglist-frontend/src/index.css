@@ -39,13 +39,13 @@ body {
   font-weight: 100;
   font-size: 14px;
   color: #fff;
-  background-color: #0b4c4e8a;
+  background-color: #094042;
   padding: 10px 25px;
-  border: solid #0b4c4e8a 2px;
+  border: solid #093d3f6e 2px;
   box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
   border-radius: 13px;
   transition: 274ms;
-  transform: translateY(0);
+  transform: translateX(0);
   display: block;
   cursor: pointer;
   margin: 30px 10px 0 auto;
@@ -54,10 +54,27 @@ body {
 .login--button:hover {
   transition: 274ms;
   padding: 10px 40px;
-  transform: translateY(5px);
-  background-color: #0b4c4e8a;
+  transform: translateX(5px);
+  background-color: #0b4c4e;
   color: #ffffff;
   border: solid 2px #0b4c4e8a;
+}
+
+.logout--button {
+  font-family: Roboto, sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  color: #fff;
+  background-color: #094042ee;
+  padding: 2px 5px;
+  border: solid #0b4c4e8a 2px;
+  border-radius: 13px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.logout--button:hover {
+  box-shadow: rgb(255, 255, 255) 0px 0px 10px 2px;
 }
 
 .input--container {
@@ -107,6 +124,28 @@ input:focus::placeholder {
 
 .blogs {
   color: #ffffff;
+}
+
+.create--button {
+  font-family: Roboto, sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  color: #fff;
+  background-color: #094042;
+  padding: 10px 20px;
+  border: solid #093d3f6e 2px;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 13px;
+  transition: 274ms;
+  transform: translateX(0);
+  display: block;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.create--button:hover {
+  transition: 274ms;
+  padding: 10px 30px;
 }
 
 /*               */
