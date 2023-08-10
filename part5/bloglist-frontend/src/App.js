@@ -90,7 +90,7 @@ const App = () => {
     );
   }
 
-  const addPhoneNumber = (e) => {
+  const addNewBlog = (e) => {
     e.preventDefault();
 
     const isDuplicated = blogs.find((blog) => blog.title === newTitle);
@@ -174,7 +174,7 @@ const App = () => {
         handleTitleChange={handleTitleChange}
         handleAuthorChange={handleAuthorChange}
         handleUrlChange={handleUrlChange}
-        addPhoneNumber={addPhoneNumber}
+        addNewBlog={addNewBlog}
       />
 
       {blogs.map((blog) => (
