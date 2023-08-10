@@ -4,6 +4,7 @@ import Blog from "./components/Blog";
 import BlogForm from "./components/BlogForm";
 import User from "./components/User";
 import Notification from "./components/Notification";
+import LoginForm from "./components/LoginForm";
 
 import blogService from "./services/blogs";
 import loginService from "./services/login";
@@ -58,35 +59,14 @@ const App = () => {
 
   if (user === null) {
     return (
-      <div className="login--container">
-        <h2 className="login--title">Log in to application</h2>
-        <Notification message={errorMessage} />
-        <form onSubmit={handleLogin}>
-          <div className="input--container">
-            username
-            <input
-              type="text"
-              value={username}
-              name="Username"
-              placeholder="Type your username"
-              onChange={({ target }) => setUsername(target.value)}
-            />
-          </div>
-          <div className="input--container">
-            password
-            <input
-              type="password"
-              value={password}
-              name="Password"
-              placeholder="Type your password"
-              onChange={({ target }) => setPassword(target.value)}
-            />
-          </div>
-          <button className="login--button" type="submit">
-            Login
-          </button>
-        </form>
-      </div>
+      <LoginForm
+        handleLogin={handleLogin}
+        handleUsernameChange={({ target }) => setUsername(target.value)}
+        handlePasswordChange={({ target }) => setPassword(target.value)}
+        username={username}
+        password={password}
+        errorMessage={errorMessage}
+      />
     );
   }
 
@@ -147,8 +127,6 @@ const App = () => {
     }
   };
 
-  console.log(blogs);
-
   const handleTitleChange = (e) => {
     setNewTitle(e.target.value);
   };
@@ -164,6 +142,8 @@ const App = () => {
   return (
     <div className="blogs--container">
       <h2 className="blogs--title">blogs</h2>
+
+      <Notification message={errorMessage} />
 
       <User key={user.id} user={user} />
 

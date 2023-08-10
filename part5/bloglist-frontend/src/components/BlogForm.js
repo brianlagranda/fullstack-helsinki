@@ -9,14 +9,14 @@ const BlogForm = ({
 }) => {
   return (
     <form onSubmit={addNewBlog}>
-      <div className="input--container">
+      <div className="blog-input--container">
         Title: <input required value={newTitle} onChange={handleTitleChange} />
       </div>
-      <div className="input--container">
+      <div className="blog-input--container">
         Author:{" "}
         <input required value={newAuthor} onChange={handleAuthorChange} />
       </div>
-      <div className="input--container">
+      <div className="blog-input--container">
         URL: <input value={newUrl} onChange={handleUrlChange} />
       </div>
       <button className="create--button" type="submit">
