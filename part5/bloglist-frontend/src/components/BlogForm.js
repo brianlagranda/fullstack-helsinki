@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 const BlogForm = ({
   newTitle,
   newAuthor,
@@ -5,6 +7,7 @@ const BlogForm = ({
   handleTitleChange,
   handleAuthorChange,
   handleUrlChange,
+  toggleVisibility,
   addNewBlog,
 }) => {
   return (
@@ -19,9 +22,12 @@ const BlogForm = ({
       <div className="blog-input--container">
         URL: <input value={newUrl} onChange={handleUrlChange} />
       </div>
-      <button className="create--button" type="submit">
-        create
-      </button>
+      <Button
+        onClick={toggleVisibility}
+        type="submit"
+        text="Create"
+        btn="btn-create"
+      />
     </form>
   );
 };

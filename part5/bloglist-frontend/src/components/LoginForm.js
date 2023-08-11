@@ -1,4 +1,5 @@
 import Notification from "./Notification";
+import Button from "./Button";
 
 const LoginForm = ({
   handleLogin,
@@ -34,9 +35,7 @@ const LoginForm = ({
             onChange={handlePasswordChange}
           />
         </div>
-        <button className="login--button" type="submit">
-          Login
-        </button>
+        <Button type="submit" text="Log in" btn="btn-login" />
       </form>
     </div>
   );

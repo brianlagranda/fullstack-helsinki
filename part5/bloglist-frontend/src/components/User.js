@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 const handleLogout = async () => {
   await window.localStorage.removeItem("loggedBlogappUser");
   window.location.reload();
@@ -6,9 +8,7 @@ const handleLogout = async () => {
 const User = ({ user }) => (
   <div className="user">
     <b>{user.name}</b> logged in
-    <button onClick={handleLogout} className="logout--button" type="submit">
-      Log out
-    </button>
+    <Button onClick={handleLogout} text="Log out" btn="btn-logout" />
   </div>
 );
 
