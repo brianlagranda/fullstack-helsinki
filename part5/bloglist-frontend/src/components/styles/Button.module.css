@@ -25,11 +25,20 @@
   margin-top: 30px;
 }
 
-.btn-logout {
+.btn-logout,
+.btn-view,
+.btn-like {
   font-weight: 500;
   font-size: 14px;
   padding: 2px 5px;
   margin-left: 1rem;
+}
+
+.btn-like {
+  margin-left: 0.25rem;
+  border-radius: 5px;
+  height: 1.5rem;
+  font-size: 12px;
 }
 
 .btn-createBlog {

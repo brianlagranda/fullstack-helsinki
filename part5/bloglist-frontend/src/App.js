@@ -60,6 +60,8 @@ const App = () => {
     }
   };
 
+  console.log(user);
+
   if (user === null) {
     return (
       <LoginForm

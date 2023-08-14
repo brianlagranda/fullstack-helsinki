@@ -1,7 +1,7 @@
 import Button from "./Button";
 
-const handleLogout = async () => {
-  await window.localStorage.removeItem("loggedBlogappUser");
+const handleLogout = () => {
+  window.localStorage.removeItem("loggedBlogappUser");
   window.location.reload();
 };
 

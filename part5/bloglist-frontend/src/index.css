@@ -90,7 +90,16 @@ input:focus::placeholder {
 }
 
 .blogs {
+  border: 1px solid #000;
+  background-color: #00000025;
+  margin: 0.25rem 0px;
+  padding: 0.25rem;
   color: #ffffff;
+}
+
+.blogs-content {
+  display: flex;
+  flex-direction: column;
 }
 
 /*               */
