@@ -15,7 +15,7 @@ const App = () => {
   const [newTitle, setNewTitle] = useState("");
   const [newAuthor, setNewAuthor] = useState("");
   const [newUrl, setNewUrl] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [notificationMessage, setNotificationMessage] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
@@ -53,14 +53,12 @@ const App = () => {
       setUsername("");
       setPassword("");
     } catch (exception) {
-      setErrorMessage("Error: Wrong credentials");
+      setNotificationMessage("Error: Wrong credentials");
       setTimeout(() => {
-        setErrorMessage(null);
+        setNotificationMessage(null);
       }, 5000);
     }
   };
-
-  console.log(user);
 
   if (user === null) {
     return (
@@ -70,7 +68,7 @@ const App = () => {
         handlePasswordChange={({ target }) => setPassword(target.value)}
         username={username}
         password={password}
-        errorMessage={errorMessage}
+        notificationMessage={notificationMessage}
       />
     );
   }
@@ -99,15 +97,15 @@ const App = () => {
             setNewTitle("");
             setNewAuthor("");
             setNewUrl("");
-            setErrorMessage(
+            setNotificationMessage(
               `${isDuplicated.name} has been succesfully updated`
             );
             setTimeout(() => {
-              setErrorMessage(null);
+              setNotificationMessage(null);
             }, 5000);
           })
           .catch((error) => {
-            setErrorMessage(
+            setNotificationMessage(
               `Error: Information of ${isDuplicated.title} has already been removed from server`
             );
           });
@@ -126,9 +124,9 @@ const App = () => {
         setNewTitle("");
         setNewAuthor("");
         setNewUrl("");
-        setErrorMessage(`${newBlog.title} has been succesfully added`);
+        setNotificationMessage(`${newBlog.title} has been succesfully added`);
         setTimeout(() => {
-          setErrorMessage(null);
+          setNotificationMessage(null);
         }, 5000);
       });
     }
@@ -150,7 +148,7 @@ const App = () => {
     <div className="blogs--container">
       <h2 className="blogs--title">blogs</h2>
 
-      <Notification message={errorMessage} />
+      <Notification message={notificationMessage} />
 
       <User key={user.id} user={user} />
 
