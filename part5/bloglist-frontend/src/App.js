@@ -132,6 +132,28 @@ const App = () => {
     }
   };
 
+  const handleLikeClick = async (blogId) => {
+    try {
+      const blogToUpdate = blogs.find((blog) => blog.id === blogId);
+      console.log(blogToUpdate.user.id);
+      const updatedBlog = {
+        ...blogToUpdate,
+        user: blogToUpdate.user.id,
+        likes: blogToUpdate.likes + 1,
+      };
+
+      const updatedBlogs = blogs.map((blog) =>
+        blog.id === blogId ? updatedBlog : blog
+      );
+
+      setBlogs(updatedBlogs);
+
+      await blogService.update(blogId, updatedBlog);
+    } catch (error) {
+      console.error("Error updating likes:", error);
+    }
+  };
+
   const handleTitleChange = (e) => {
     setNewTitle(e.target.value);
   };
@@ -169,7 +191,7 @@ const App = () => {
       </Togglable>
 
       {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} blog={blog} handleLikeClick={handleLikeClick} />
       ))}
     </div>
   );
