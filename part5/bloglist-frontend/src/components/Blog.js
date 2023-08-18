@@ -1,8 +1,6 @@
 import { useState } from "react";
 import Button from "./Button";
 
-import blogService from "../services/blogs";
-
 const Blog = ({ blog, handleLikeClick }) => {
   const [viewWholeBlog, toggleWhole] = useState(false);
   const label = viewWholeBlog ? "Hide" : "View";

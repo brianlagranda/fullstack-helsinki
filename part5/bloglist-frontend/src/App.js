@@ -135,7 +135,12 @@ const App = () => {
   const handleLikeClick = async (blogId) => {
     try {
       const blogToUpdate = blogs.find((blog) => blog.id === blogId);
-      console.log(blogToUpdate.user.id);
+
+      if (!blogToUpdate) {
+        console.error("Blog not found for ID:", blogId);
+        return;
+      }
+
       const updatedBlog = {
         ...blogToUpdate,
         user: blogToUpdate.user.id,
