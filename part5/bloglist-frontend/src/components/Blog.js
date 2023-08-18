@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 
-const Blog = ({ blog, handleLikeClick }) => {
+const Blog = ({ blog, handleLikeClick, handleRemoveClick }) => {
   const [viewWholeBlog, toggleWhole] = useState(false);
   const label = viewWholeBlog ? "Hide" : "View";
 
@@ -25,6 +25,13 @@ const Blog = ({ blog, handleLikeClick }) => {
             ></Button>
           </div>
           {blog.author}
+          <div>
+            <Button
+              onClick={() => handleRemoveClick(blog.id)}
+              text="Remove"
+              btn="btn-like"
+            ></Button>
+          </div>
         </div>
       )}
     </div>

@@ -22,12 +22,21 @@ const create = async (newBlog) => {
   return response.data;
 };
 
-const update = async (id, updatedBlog) => {
-  const request = axios.put(`${baseUrl}/${id}`, updatedBlog);
+const update = async (blogId, updatedBlog) => {
+  const request = axios.put(`${baseUrl}/${blogId}`, updatedBlog);
   const response = await request;
 
   return response.data;
 };
 
+const remove = async (blogId) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+
+  const response = await axios.delete(`${baseUrl}/${blogId}`, config);
+  return response.data;
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, create, update, setToken };
+export default { getAll, create, update, remove, setToken };

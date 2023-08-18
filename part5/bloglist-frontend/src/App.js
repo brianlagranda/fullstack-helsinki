@@ -22,6 +22,8 @@ const App = () => {
 
   const blogFormRef = useRef();
 
+  blogs.sort((blogA, blogB) => (blogA.likes > blogB.likes ? 1 : -1));
+
   useEffect(() => {
     blogService.getAll().then((blogs) => {
       setBlogs(blogs);
@@ -159,6 +161,30 @@ const App = () => {
     }
   };
 
+  const handleRemoveClick = async (blogId) => {
+    const blogToRemove = blogs.find((blog) => blog.id === blogId);
+    if (
+      window.confirm(
+        `Remove blog ${blogToRemove.title} by ${blogToRemove.author}`
+      )
+    ) {
+      try {
+        if (!blogToRemove) {
+          console.error("Blog not found for ID:", blogId);
+          return;
+        }
+
+        const blogsRemoved = blogs.filter((blog) => blog.id !== blogId);
+
+        setBlogs(blogsRemoved);
+
+        await blogService.remove(blogId);
+      } catch (error) {
+        console.error("Error removing blog:", error);
+      }
+    }
+  };
+
   const handleTitleChange = (e) => {
     setNewTitle(e.target.value);
   };
@@ -196,7 +222,12 @@ const App = () => {
       </Togglable>
 
       {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} handleLikeClick={handleLikeClick} />
+        <Blog
+          key={blog.id}
+          blog={blog}
+          handleLikeClick={handleLikeClick}
+          handleRemoveClick={handleRemoveClick}
+        />
       ))}
     </div>
   );
