@@ -225,6 +225,7 @@ const App = () => {
         <Blog
           key={blog.id}
           blog={blog}
+          user={user}
           handleLikeClick={handleLikeClick}
           handleRemoveClick={handleRemoveClick}
         />
