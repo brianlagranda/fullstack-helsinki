@@ -89,7 +89,7 @@ input:focus::placeholder {
   padding-bottom: 20px;
 }
 
-.blogs {
+.blog {
   border: 1px solid #000;
   background-color: #00000025;
   margin: 0.25rem 0px;
@@ -97,7 +97,7 @@ input:focus::placeholder {
   color: #ffffff;
 }
 
-.blogs-content {
+.blog-content {
   display: flex;
   flex-direction: column;
 }

@@ -9,7 +9,7 @@ const Blog = ({ blog, handleLikeClick, handleRemoveClick, user }) => {
     user && blog.user && user.username === blog.user.username;
 
   return (
-    <div className="blogs">
+    <div className="blog">
       {blog.title}
       <Button
         onClick={() => toggleWhole(!viewWholeBlog)}
@@ -17,7 +17,7 @@ const Blog = ({ blog, handleLikeClick, handleRemoveClick, user }) => {
         btn="btn-view"
       ></Button>
       {viewWholeBlog && (
-        <div className="blogs-content">
+        <div className="blog-content">
           {blog.url}
           <div>
             Likes {blog.likes}{" "}
