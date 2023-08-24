@@ -4,21 +4,21 @@ import { render, screen } from "@testing-library/react";
 
 import Blog from "./Blog";
 
-test("renders title and author", () => {
+test("renders title and author before pressing View button", () => {
   const blog = {
     title: "Component testing with jest",
     author: "Brian Lagranda",
+    url: "www.testing.com",
+    likes: 5,
   };
 
-  const user = {
-    username: "blagranda",
-    name: "Brian Lagranda",
-  };
+  const { container } = render(<Blog blog={blog} />);
 
-  const { container } = render(<Blog key={blog.id} blog={blog} user={user} />);
-
-  screen.debug(container);
 
   const div = container.querySelector(".blog");
+
   expect(div).toHaveTextContent("Component testing with jest");
+  expect(div).toHaveTextContent("Brian Lagranda");
+  expect(div).not.toHaveTextContent("www.testing.com");
+  expect(div).not.toHaveTextContent("5");
 });

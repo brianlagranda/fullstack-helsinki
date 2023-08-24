@@ -10,7 +10,8 @@ const Blog = ({ blog, handleLikeClick, handleRemoveClick, user }) => {
 
   return (
     <div className="blog">
-      {blog.title}
+      <span>{blog.title} </span>
+      <span>{blog.author}</span>
       <Button
         onClick={() => toggleWhole(!viewWholeBlog)}
         text={label}
