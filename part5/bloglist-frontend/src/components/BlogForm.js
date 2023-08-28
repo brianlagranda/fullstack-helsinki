@@ -1,26 +1,48 @@
+import { useState } from "react";
+
 import Button from "./Button";
 
-const BlogForm = ({
-  newTitle,
-  newAuthor,
-  newUrl,
-  handleTitleChange,
-  handleAuthorChange,
-  handleUrlChange,
-  toggleVisibility,
-  addNewBlog,
-}) => {
+const BlogForm = ({ createBlog, toggleVisibility }) => {
+  const [newTitle, setNewTitle] = useState("");
+  const [newAuthor, setNewAuthor] = useState("");
+  const [newUrl, setNewUrl] = useState("");
+
+  const handleTitleChange = (e) => {
+    setNewTitle(e.target.value);
+  };
+
+  const handleAuthorChange = (e) => {
+    setNewAuthor(e.target.value);
+  };
+
+  const handleUrlChange = (e) => {
+    setNewUrl(e.target.value);
+  };
+
+  const addBlog = (e) => {
+    e.preventDefault();
+    createBlog({
+      title: newTitle,
+      author: newAuthor,
+      url: newUrl,
+    });
+
+    setNewTitle("");
+    setNewAuthor("");
+    setNewUrl("");
+  };
+
   return (
-    <form onSubmit={addNewBlog}>
+    <form onSubmit={addBlog}>
       <div className="blog-input--container">
-        Title: <input required value={newTitle} onChange={handleTitleChange} />
+        Title: <input required value={newTitle} onChange={handleTitleChange} placeholder="write the title of the blog" />
       </div>
       <div className="blog-input--container">
         Author:{" "}
-        <input required value={newAuthor} onChange={handleAuthorChange} />
+        <input required value={newAuthor} onChange={handleAuthorChange} placeholder="name of the author" />
       </div>
       <div className="blog-input--container">
-        URL: <input value={newUrl} onChange={handleUrlChange} />
+        URL: <input value={newUrl} onChange={handleUrlChange} placeholder="www.example.com"/>
       </div>
       <Button
         onClick={toggleVisibility}

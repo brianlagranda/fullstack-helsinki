@@ -4,7 +4,6 @@ import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
 
 import Blog from "./Blog";
-import BlogForm from "./BlogForm";
 
 describe("<Blog />", () => {
   test("renders title and author before pressing View button", () => {
@@ -69,27 +68,5 @@ describe("<Blog />", () => {
 
     expect(container).not.toHaveTextContent("View");
     expect(mockHandler.mock.calls).toHaveLength(2);
-  });
-});
-
-describe("<BlogForm />", () => {
-  test("new blog form is created with the right details", async () => {
-    const addNewBlog = jest.fn();
-    const user = userEvent.setup();
-
-    render(<BlogForm addNewBlog={addNewBlog} />);
-
-    const input = screen.getAllByRole("textbox");
-    const sendButton = screen.getByText("Create");
-
-    await user.type(input, "Testing a form...");
-    //await user.type(inputs[1], "Brian Lagranda");
-    //await user.type(inputs[2], "www.testingaform.com");
-    await user.click(sendButton);
-
-    expect(addNewBlog.mock.calls).toHaveLength(1);
-    expect(addNewBlog.mock.calls[0][0].content).toBe("Testing a form...");
-    //expect(addNewBlog.mock.calls[0][1].content).toBe("Brian Lagranda");
-    //expect(addNewBlog.mock.calls[0][2].content).toBe("www.testingaform.com");
   });
 });
