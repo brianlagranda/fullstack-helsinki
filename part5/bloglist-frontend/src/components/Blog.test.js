@@ -31,6 +31,7 @@ describe("<Blog />", () => {
       author: "Brian Lagranda",
       url: "www.testing.com",
       likes: 5,
+      id: "64ed0015c58574b30fb73b92"
     };
 
     const mockHandler = jest.fn();
@@ -52,11 +53,13 @@ describe("<Blog />", () => {
       author: "Brian Lagranda",
       url: "www.testing.com",
       likes: 5,
+      id: "64ed0015c58574b30fb73b92"
     };
 
-    const mockHandler = jest.fn();
+    const mockHandlerToggleWhole = jest.fn();
+    const mockHandlerLikeClick = jest.fn();
 
-    const { container } = render(<Blog blog={blog} toggleWhole={mockHandler} handleLikeClick={mockHandler} />);
+    const { container } = render(<Blog blog={blog} toggleWhole={mockHandlerToggleWhole} handleLikeClick={mockHandlerLikeClick} />);
 
     const user = userEvent.setup();
     const button = screen.getByText("View");
@@ -67,6 +70,6 @@ describe("<Blog />", () => {
     await user.click(likeButton);
 
     expect(container).not.toHaveTextContent("View");
-    expect(mockHandler.mock.calls).toHaveLength(2);
+    expect(mockHandlerLikeClick.mock.calls).toHaveLength(2);
   });
 });
