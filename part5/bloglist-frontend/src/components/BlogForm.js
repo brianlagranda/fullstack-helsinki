@@ -35,14 +35,14 @@ const BlogForm = ({ createBlog, toggleVisibility }) => {
   return (
     <form onSubmit={addBlog}>
       <div className="blog-input--container">
-        Title: <input required value={newTitle} onChange={handleTitleChange} placeholder="write the title of the blog" />
+        Title: <input required value={newTitle} onChange={handleTitleChange} placeholder="write the title of the blog" id="blogNewTitle" />
       </div>
       <div className="blog-input--container">
         Author:{" "}
-        <input required value={newAuthor} onChange={handleAuthorChange} placeholder="name of the author" />
+        <input required value={newAuthor} onChange={handleAuthorChange} placeholder="name of the author" id="blogNewAuthor" />
       </div>
       <div className="blog-input--container">
-        URL: <input value={newUrl} onChange={handleUrlChange} placeholder="www.example.com"/>
+        URL: <input value={newUrl} onChange={handleUrlChange} placeholder="www.example.com" id="blogNewUrl" />
       </div>
       <Button
         onClick={toggleVisibility}
