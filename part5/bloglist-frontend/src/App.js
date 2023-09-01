@@ -12,9 +12,6 @@ import loginService from "./services/login";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
-  const [newTitle, setNewTitle] = useState("");
-  const [newAuthor, setNewAuthor] = useState("");
-  const [newUrl, setNewUrl] = useState("");
   const [notificationMessage, setNotificationMessage] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,12 +19,13 @@ const App = () => {
 
   const blogFormRef = useRef();
 
-  blogs.sort((blogA, blogB) => (blogA.likes > blogB.likes ? 1 : -1));
-
   useEffect(() => {
-    blogService.getAll().then((blogs) => {
-      setBlogs(blogs);
-    });
+    blogService
+      .getAll()
+      .then((initialBlogs) => {
+        const sortedBlogs = initialBlogs.sort((blogA, blogB) => (blogA.likes > blogB.likes ? 1 : -1));
+        setBlogs(sortedBlogs);
+      });
   }, []);
 
   useEffect(() => {
@@ -47,9 +45,7 @@ const App = () => {
         username,
         password,
       });
-
       window.localStorage.setItem("loggedBlogappUser", JSON.stringify(user));
-
       blogService.setToken(user.token);
       setUser(user);
       setUsername("");
@@ -75,18 +71,17 @@ const App = () => {
     );
   }
 
-  const addNewBlog = (e) => {
-    e.preventDefault();
+  const createBlog = (blogObj) => {
 
-    const isDuplicated = blogs.find((blog) => blog.title === newTitle);
+    const isDuplicated = blogs.find((blog) => blog.title === blogObj.title);
 
     if (isDuplicated) {
       const confirmation = window.confirm(
-        `${newTitle} is already in your blogs, check title please`
+        `${blogObj.title} is already in your blogs, check title please`
       );
 
       if (confirmation) {
-        const updatedBlog = { ...isDuplicated, title: newTitle };
+        const updatedBlog = { ...isDuplicated, title: blogObj.title };
 
         blogService
           .update(isDuplicated.id, updatedBlog)
@@ -96,9 +91,6 @@ const App = () => {
                 blog.id === returnedBlog.id ? returnedBlog : blog
               )
             );
-            setNewTitle("");
-            setNewAuthor("");
-            setNewUrl("");
             setNotificationMessage(
               `${isDuplicated.name} has been succesfully updated`
             );
@@ -114,23 +106,21 @@ const App = () => {
       }
     } else {
       const newBlog = {
-        title: newTitle,
-        author: newAuthor,
-        url: newUrl,
+        title: blogObj.title,
+        author: blogObj.author,
+        url: blogObj.url,
       };
 
       blogFormRef.current.toggleVisibility();
 
-      blogService.create(newBlog).then((returnedBlog) => {
-        setBlogs(blogs.concat(returnedBlog));
-        setNewTitle("");
-        setNewAuthor("");
-        setNewUrl("");
-        setNotificationMessage(`${newBlog.title} has been succesfully added`);
-        setTimeout(() => {
-          setNotificationMessage(null);
-        }, 5000);
-      });
+      blogService.create(newBlog)
+        .then((returnedBlog) => {
+          setBlogs(blogs.concat(returnedBlog));
+          setNotificationMessage(`${newBlog.title} has been succesfully added`);
+          setTimeout(() => {
+            setNotificationMessage(null);
+          }, 5000);
+        });
     }
   };
 
@@ -185,18 +175,6 @@ const App = () => {
     }
   };
 
-  const handleTitleChange = (e) => {
-    setNewTitle(e.target.value);
-  };
-
-  const handleAuthorChange = (e) => {
-    setNewAuthor(e.target.value);
-  };
-
-  const handleUrlChange = (e) => {
-    setNewUrl(e.target.value);
-  };
-
   return (
     <div className="blogs--container">
       <h2 className="blogs--title">blogs</h2>
@@ -211,13 +189,7 @@ const App = () => {
         ref={blogFormRef}
       >
         <BlogForm
-          newTitle={newTitle}
-          newAuthor={newAuthor}
-          newUrl={newUrl}
-          handleTitleChange={handleTitleChange}
-          handleAuthorChange={handleAuthorChange}
-          handleUrlChange={handleUrlChange}
-          addNewBlog={addNewBlog}
+          createBlog={createBlog}
         />
       </Togglable>
 
