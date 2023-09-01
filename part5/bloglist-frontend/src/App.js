@@ -23,8 +23,7 @@ const App = () => {
     blogService
       .getAll()
       .then((initialBlogs) => {
-        const sortedBlogs = initialBlogs.sort((blogA, blogB) => (blogA.likes > blogB.likes ? 1 : -1));
-        setBlogs(sortedBlogs);
+        setBlogs(initialBlogs);
       });
   }, []);
 
@@ -175,6 +174,8 @@ const App = () => {
     }
   };
 
+  blogs.sort((blogA, blogB) => (blogA.likes < blogB.likes ? 1 : -1));
+
   return (
     <div className="blogs--container">
       <h2 className="blogs--title">blogs</h2>
@@ -202,6 +203,7 @@ const App = () => {
           handleRemoveClick={handleRemoveClick}
         />
       ))}
+
     </div>
   );
 };

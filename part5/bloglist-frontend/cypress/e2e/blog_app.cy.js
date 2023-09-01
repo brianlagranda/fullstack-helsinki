@@ -88,5 +88,46 @@ describe("Blog app", function () {
         cy.should("not.contain", "remove");
       });
     });
+
+    describe("and multiple blogs exists", function () {
+      beforeEach(function () {
+        cy.createBlog({
+          title: "Blog with 320 likes",
+          author: "Cypress",
+          url: "www.testingCypress.com",
+          likes: 320,
+        });
+        cy.createBlog({
+          title: "Blog with 100 likes",
+          author: "Cypress",
+          url: "www.testingCypress.com",
+          likes: 100,
+        });
+        cy.createBlog({
+          title: "Blog will be 101 likes",
+          author: "Cypress",
+          url: "www.testingCypress.com",
+          likes: 99,
+        });
+        cy.createBlog({
+          title: "Blog with 1500 likes",
+          author: "Cypress",
+          url: "www.testingCypress.com",
+          likes: 1500,
+        });
+      });
+
+      it("blogs are ordered by total of likes", function() {
+        cy.get(".blog").eq(0).should("contain", "Blog with 1500 likes Cypress");
+        cy.get(".blog").eq(1).should("contain", "Blog with 320 likes Cypress");
+        cy.contains("Blog will be 101 likes Cypress")
+          .contains("View").click();
+        cy.contains("Like").click();
+        cy.wait(1000);
+        cy.contains("Like").click();
+        cy.get(".blog").eq(2).should("contain", "Blog will be 101 likes Cypress");
+        cy.get(".blog").eq(3).should("contain", "Blog with 100 likes Cypress");
+      });
+    });
   });
 });
