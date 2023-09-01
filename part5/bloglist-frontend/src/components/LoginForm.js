@@ -13,7 +13,7 @@ const LoginForm = ({
 }) => {
   return (
     <div className="login--container">
-      <h2 className="login--title">Login in to application</h2>
+      <h2 className="login--title">Login</h2>
 
       <Notification message={notificationMessage} />
 
@@ -22,6 +22,7 @@ const LoginForm = ({
           username
           <input
             required
+            id="username"
             value={username}
             placeholder="Type your username"
             onChange={handleUsernameChange}
@@ -31,13 +32,14 @@ const LoginForm = ({
           password
           <input
             required
+            id="password"
             type="password"
             value={password}
             placeholder="Type your password"
             onChange={handlePasswordChange}
           />
         </div>
-        <Button type="submit" text="Log in" btn="btn-login" />
+        <Button id="btn-login" type="submit" text="Log in" btn="btn-login" />
       </form>
     </div>
   );
