@@ -45,6 +45,7 @@ const BlogForm = ({ createBlog, toggleVisibility }) => {
         URL: <input value={newUrl} onChange={handleUrlChange} placeholder="www.example.com" id="blogNewUrl" />
       </div>
       <Button
+        id="btn-create"
         onClick={toggleVisibility}
         type="submit"
         text="Create"
