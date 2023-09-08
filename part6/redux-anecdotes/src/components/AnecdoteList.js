@@ -15,7 +15,13 @@ const Anecdote = ({ anecdote, handleClick }) => {
 
 const AnecdoteList = () => {
   const dispatch = useDispatch()
-  const anecdotes = useSelector(state => state)
+    const anecdotes = useSelector(({filter, anecdotes} => {
+    if ( state.filter === '' ) {
+      return state.anecdotes
+    } else {
+      return state.anecdotes.filter(anecdote => anecdote.content.includes(state.filter))
+    }
+  })
 
   return(
     <ul>
