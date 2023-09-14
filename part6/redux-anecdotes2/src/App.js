@@ -5,7 +5,7 @@ import Filter from "./components/Filter"
 const App = () => {
   return(
     <div>
-      <h2>Anecdotes</h2>
+      <h2 className="text-3xl font-bold underline">Anecdotes</h2>
       <Filter />
       <AnecdoteList />
       <h2>Create new</h2>

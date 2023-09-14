@@ -3,11 +3,11 @@ import { addVote } from '../reducers/anecdoteReducer'
 
 const Anecdote = ({ anecdote, handleClick }) => {
   return(
-    <li>
+    <li className='py-2'>
         {anecdote.content} 
-        <div> 
+        <div className='px-2'> 
         Has {anecdote.votes}
-        <button onClick={handleClick}>vote</button>
+        <button className='bg-sky-300 px-2 rounded h-6 mx-2' onClick={handleClick}>vote</button>
         </div>
     </li>
   )
@@ -26,7 +26,7 @@ const AnecdoteList = () => {
   })
 
   return(
-    <ul>
+    <ul className='my-4 px-2'>
       {anecdotes.map(anecdote =>
         <Anecdote
           key={anecdote.id}
