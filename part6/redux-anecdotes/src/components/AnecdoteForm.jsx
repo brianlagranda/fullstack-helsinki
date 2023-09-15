@@ -14,7 +14,7 @@ const AnecdoteForm = () => {
   return (
     <form className='py-4 flex gap-4' onSubmit={addAnecdote}>
       <input className='w-full h-7 my-auto px-2 rounded' name="anecdote" />
-      <button className='bg-sky-300 px-4 rounded h-8' type="submit">create</button>
+      <button className='bg-sky-300 px-4 rounded h-8 border hover:border-slate-100' type="submit">create</button>
     </form>
   )
 }
