@@ -1,27 +1,43 @@
-import { useDispatch } from 'react-redux'
-import { createAnecdote } from '../reducers/anecdoteReducer'
-import { setNotification } from '../reducers/notificationReducer'
+import { useDispatch } from 'react-redux';
+import { createAnecdote } from '../reducers/anecdoteReducer';
+import { setNotification } from '../reducers/notificationReducer';
+import anecdoteService from '../services/anecdotes';
 
 const AnecdoteForm = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const addAnecdote = (e) => {
-    e.preventDefault()
-    const content = e.target.anecdote.value
-    e.target.anecdote.value = ''
-    dispatch(createAnecdote(content))
-    dispatch(setNotification(`'${content}' has been created successfully`))
+  const addAnecdote = async (e) => {
+    e.preventDefault();
+    const content = e.target.anecdote.value;
+    e.target.anecdote.value = '';
+    if (content !== '' && content.length() <= 5) {
+      const newAnecdote = await anecdoteService.createNew(content);
+      dispatch(createAnecdote(newAnecdote));
+      dispatch(setNotification(`'${content}' has been created successfully`));
+    } else {
+      dispatch(
+        setNotification(
+          `The content was not defined or is less than 5 characters in length`
+        )
+      );
+    }
     setTimeout(() => {
-      dispatch(setNotification(''))
-    }, 5000)
-  }
+      dispatch(setNotification(''));
+    }, 5000);
+  };
 
   return (
     <form className='py-4 flex gap-4' onSubmit={addAnecdote}>
-      <input className='w-full h-7 my-auto px-2 rounded' name="anecdote" />
-      <button className='bg-sky-300 px-4 rounded h-8 border hover:border-slate-100' type="submit">create</button>
+      <input className='w-full h-7 my-auto px-2 rounded' name='anecdote' />
+      <button
+        className='bg-sky-300 px-4 rounded h-8 border hover:border-slate-100'
+        type='submit'
+      >
+        create
+      </button>
     </form>
-  )
-}
+  );
+};
 
 export default AnecdoteForm;
+
