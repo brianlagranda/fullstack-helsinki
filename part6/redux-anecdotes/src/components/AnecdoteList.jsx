@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
 import { updateAnecdoteVotes } from '../reducers/anecdoteReducer';
-import { setNotification } from '../reducers/notificationReducer';
+import { setNotificationThunk } from '../reducers/notificationReducer';
 
 import Anecdote from './Anecdote';
 
@@ -11,13 +11,9 @@ const selectFilteredAnecdotes = createSelector(
   (anecdotes, filter) => {
     const anecdotesForSort = [...anecdotes];
     const sortedAnecdotes = anecdotesForSort.sort((a, b) => b.votes - a.votes);
-    if (filter === '') {
-      return sortedAnecdotes;
-    } else {
-      return sortedAnecdotes.filter(anecdote =>
-        anecdote.content.toLowerCase().includes(filter)
-      );
-    }
+    return sortedAnecdotes.filter(anecdote =>
+      anecdote.content.toLowerCase().includes(filter)
+    );
   }
 );
 
@@ -34,10 +30,9 @@ const AnecdoteList = () => {
           anecdote={anecdote}
           handleClick={() => {
             dispatch(updateAnecdoteVotes(anecdote));
-            dispatch(setNotification(`You voted '${anecdote.content}'`));
-            setTimeout(() => {
-              dispatch(setNotification(''));
-            }, 5000);
+            dispatch(
+              setNotificationThunk(`You voted '${anecdote.content}'`, 5)
+            );
           }}
         />
       ))}

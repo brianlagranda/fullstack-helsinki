@@ -1,25 +1,19 @@
 import { useSelector } from 'react-redux';
 
 const Notification = () => {
-  const notification = useSelector(( { notification } ) => notification)
+  const notification = useSelector(state => state.notification);
 
-  const hide = {
-    display: 'none',
+  console.log(notification);
+
+  if (!notification || !notification.message) {
+    return null;
   }
 
-  if(notification === ""){
-    return(
-      <div style={hide}>
-        { notification }
-      </div>
-    )
-  }else{
-    return (
-      <div className='py-2 my-3 px-2 rounded bg-green-300/20 shadow-lg shadow-black-500/50'>
-        { notification }
-      </div>
-    )
-  }
-}
+  return (
+    <div className='py-2 my-3 px-2 rounded bg-green-300/20 shadow-lg shadow-black-500/50'>
+      <p>{notification.message}</p>
+    </div>
+  );
+};
 
-export default Notification
+export default Notification;

@@ -1,27 +1,27 @@
 import { useDispatch } from 'react-redux';
 import { createAnecdote } from '../reducers/anecdoteReducer';
-import { setNotification } from '../reducers/notificationReducer';
+import { setNotificationThunk } from '../reducers/notificationReducer';
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch();
 
-  const addAnecdote = async (e) => {
+  const addAnecdote = async e => {
     e.preventDefault();
     const content = e.target.anecdote.value;
     e.target.anecdote.value = '';
     if (content !== '' && content.length >= 5) {
       dispatch(createAnecdote(content));
-      dispatch(setNotification(`'${content}' has been created successfully`));
+      dispatch(
+        setNotificationThunk(`'${content}' has been created successfully`, 5)
+      );
     } else {
       dispatch(
-        setNotification(
-          `The content was not defined or is less than 5 characters in length`
+        setNotificationThunk(
+          `The content was not defined or is less than 5 characters in length`,
+          5
         )
       );
     }
-    setTimeout(() => {
-      dispatch(setNotification(''));
-    }, 5000);
   };
 
   return (

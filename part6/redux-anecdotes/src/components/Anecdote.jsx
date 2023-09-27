@@ -16,3 +16,4 @@ const Anecdote = ({ anecdote, handleClick }) => {
 };
 
 export default Anecdote;
+
