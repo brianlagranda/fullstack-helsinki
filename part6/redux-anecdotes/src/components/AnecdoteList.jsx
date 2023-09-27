@@ -27,7 +27,7 @@ const AnecdoteList = () => {
     if (filter === '') {
       return sortedAnecdotes;
     } else {
-      return sortedAnecdotes.filter((anecdote) =>
+      return sortedAnecdotes.filter(anecdote =>
         anecdote.content.toLowerCase().includes(filter)
       );
     }
@@ -35,7 +35,7 @@ const AnecdoteList = () => {
 
   return (
     <ul className='my-4 px-2'>
-      {anecdotes.map((anecdote) => (
+      {anecdotes.map(anecdote => (
         <Anecdote
           key={anecdote.id}
           anecdote={anecdote}
@@ -53,3 +53,4 @@ const AnecdoteList = () => {
 };
 
 export default AnecdoteList;
+
