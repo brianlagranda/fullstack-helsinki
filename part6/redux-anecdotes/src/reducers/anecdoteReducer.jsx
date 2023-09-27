@@ -46,13 +46,13 @@ export const createAnecdote = content => {
   };
 };
 
-export const updateAnecdote = changedAnecdote => {
+export const updateAnecdoteVotes = anecdote => {
   return async dispatch => {
-    const newAnecdote = await anecdoteService.update(changedAnecdote.id, {
-      ...changedAnecdote,
-      votes: changedAnecdote.votes + 1,
+    const updatedAnecdote = await anecdoteService.update(anecdote.id, {
+      ...anecdote,
+      votes: anecdote.votes + 1,
     });
-    dispatch(addVote(newAnecdote.id));
+    dispatch(addVote(updatedAnecdote.id));
   };
 };
 
