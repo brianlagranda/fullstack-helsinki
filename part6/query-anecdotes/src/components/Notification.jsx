@@ -1,20 +1,18 @@
-import { useContext } from 'react';
-import NotificationContext from '../NotificationContext';
+import { useNotificationValue } from '../NotificationContext';
 
-import { useCounterDispatch } from '../CounterContext';
+const Notification = () => {
+  const message = useNotificationValue();
 
-const Notification = ({ notification }) => {
-  const notificationValue = useNotificationValue();
-  const dispatch = useNotificationDispatch();
-
-  const style = {
+  let style = {
     border: 'solid',
     padding: 10,
     borderWidth: 1,
     marginBottom: 5,
   };
 
-  return <div style={style}>dispatch({notification})</div>;
+  if (!message) return null;
+
+  return <div style={style}>{message}</div>;
 };
 
 export default Notification;

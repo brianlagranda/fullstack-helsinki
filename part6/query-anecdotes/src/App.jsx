@@ -4,8 +4,11 @@ import { getAnecdotes, updateAnecdote } from './request';
 import AnecdoteForm from './components/AnecdoteForm';
 import Notification from './components/Notification';
 
+import { useNotificationDispatch } from './NotificationContext';
+
 const App = () => {
   const queryClient = useQueryClient();
+  const dispatch = useNotificationDispatch();
 
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ['anecdotes'],
@@ -21,6 +24,13 @@ const App = () => {
 
   const handleVote = anecdote => {
     updateAnecdoteMutation.mutate({ ...anecdote, votes: anecdote.votes + 1 });
+    dispatch({
+      type: 'SET_NOTIFICATION',
+      payload: `Anecdote '${anecdote.content}' voted`,
+    });
+    setTimeout(() => {
+      dispatch({ type: 'CLEAR_NOTIFICATION' });
+    }, 5000);
   };
 
   if (isLoading) {
