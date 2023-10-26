@@ -3,7 +3,7 @@ const Notification = ({ message }) => {
     return null;
   }
 
-  const style = message.toLowerCase().includes("error") ? "error" : "success";
+  const style = message.toLowerCase().includes('error') ? 'error' : 'success';
   return <div className={style}>{message}</div>;
 };
 

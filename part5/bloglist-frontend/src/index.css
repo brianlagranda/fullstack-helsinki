@@ -1,106 +1,19 @@
-html {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Roboto', system-ui, sans-serif;
+  }
+}
+
+/* html {
   height: 100vh;
   width: 100vw;
   background-image: url(./img/background.jpg);
   background-size: cover;
-}
-
-body {
-  height: 90vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Roboto, sans-serif;
-  font-size: 18px;
-  overflow: hidden;
-}
-
-.login--container,
-.blogs--container {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  margin: auto 0px;
-  background-color: #007fa680;
-  border-radius: 2px 50px 2px 50px;
-  box-shadow: -1px 5px 5px 1px rgba(66, 66, 66, 0.75);
-}
-
-.blogs--container {
-  min-width: 500px;
-}
-
-.login--title {
-  display: flex;
-  justify-content: center;
-  color: #000000d3;
-}
-
-.input--container,
-.blog-input--container {
-  display: flex;
-  flex-direction: column;
-  min-width: 225px;
-  margin: 15px auto;
-  font-size: 12px;
-  color: rgb(255, 255, 255);
-  text-indent: 5px;
-  line-height: 20px;
-}
-
-.blog-input--container input {
-  width: 100%;
-}
-
-input {
-  padding: 5px;
-  font-size: 16px;
-  border-width: 1px;
-  border-color: #cccccc;
-  background-color: #ffffff;
-  color: #000000;
-  border-style: solid;
-  border-radius: 3px;
-  box-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
-}
-
-input::-webkit-input-placeholder {
-  font-size: 12px;
-  line-height: 4;
-}
-
-input:focus {
-  outline: none;
-  box-shadow: 0px 0px 5px rgb(196, 196, 196);
-}
-
-input:focus::placeholder {
-  color: transparent;
-}
-
-.user {
-  padding: 0 0 15px 0;
-}
-
-.blogs--title {
-  color: #000000bb;
-  margin: 0px auto;
-  padding-bottom: 20px;
-}
-
-.blog {
-  border: 1px solid #000;
-  background-color: #00000025;
-  margin: 0.25rem 0px;
-  padding: 0.25rem;
-  color: #ffffff;
-}
-
-.blog-content {
-  display: flex;
-  flex-direction: column;
-}
+} */
 
 /*               */
 /* Notifications */
@@ -117,28 +30,29 @@ input:focus::placeholder {
   background-repeat: no-repeat;
   background-position: 10px center;
 }
+
 .info {
   color: #00529b;
   background-color: #bde5f8;
-  background-image: url("https://i.imgur.com/ilgqWuX.png");
+  background-image: url('https://i.imgur.com/ilgqWuX.png');
 }
 .success {
   color: #4f8a10;
   background-color: #dff2bf;
-  background-image: url("https://i.imgur.com/Q9BGTuy.png");
+  background-image: url('https://i.imgur.com/Q9BGTuy.png');
 }
 .warning {
   color: #9f6000;
   background-color: #feefb3;
-  background-image: url("https://i.imgur.com/Z8q7ww7.png");
+  background-image: url('https://i.imgur.com/Z8q7ww7.png');
 }
 .error {
   color: #d8000c;
   background-color: #ffbaba;
-  background-image: url("https://i.imgur.com/GnyDvKN.png");
+  background-image: url('https://i.imgur.com/GnyDvKN.png');
 }
 .validation {
   color: #d63301;
   background-color: #ffccba;
-  background-image: url("https://i.imgur.com/GnyDvKN.png");
+  background-image: url('https://i.imgur.com/GnyDvKN.png');
 }

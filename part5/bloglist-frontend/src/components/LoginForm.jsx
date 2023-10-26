@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import Notification from "./Notification";
-import Button from "./Button";
+import Notification from './Notification';
+import Button from './Button';
 
 const LoginForm = ({
   handleLogin,
@@ -12,34 +12,34 @@ const LoginForm = ({
   notificationMessage,
 }) => {
   return (
-    <div className="login--container">
-      <h2 className="login--title">Log in</h2>
+    <div className='login--container'>
+      <h2 className='login--title'>Log in</h2>
 
       <Notification message={notificationMessage} />
 
       <form onSubmit={handleLogin}>
-        <div className="input--container">
+        <div className='input--container'>
           username
           <input
             required
-            id="username"
+            id='username'
             value={username}
-            placeholder="Type your username"
+            placeholder='Type your username'
             onChange={handleUsernameChange}
           />
         </div>
-        <div className="input--container">
+        <div className='input--container'>
           password
           <input
             required
-            id="password"
-            type="password"
+            id='password'
+            type='password'
             value={password}
-            placeholder="Type your password"
+            placeholder='Type your password'
             onChange={handlePasswordChange}
           />
         </div>
-        <Button id="btn-login" type="submit" text="Log in" btn="btn-login" />
+        <Button id='btn-login' type='submit' text='Log in' btn='btn-login' />
       </form>
     </div>
   );
