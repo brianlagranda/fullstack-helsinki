@@ -179,19 +179,20 @@ const App = () => {
         <NavBar />
       </header>
 
-      <main className='flex items-center h-full min-h-screen w-screen bg-gradient-to-br from-emerald-400 to-emerald-800 p-4'>
-        <section className='w-full bg-black/20 backdrop-blur-xl md:w-3/4 md:min-h-full grid grid-cols-1 grid-row-3 justify-items-center rounded-md p-2 mt-16 gap-4'>
-          <h1 className='text-3xl font-bold row-span-1'>Blogs</h1>
+      <main className='h-full min-h-screen bg-gradient-to-br from-slate-400 to-slate-200 p-4'>
+        <section className='container md:w-2/4 flex flex-wrap mx-auto justify-center bg-black/40 backdrop-blur-sm rounded-md p-4 mt-16 mb-4'>
+          <h1 className='text-3xl font-bold'>Blogs</h1>
 
           <Notification message={notificationMessage} />
 
           <User key={user.id} user={user} />
+        </section>
 
+        <section className='container md:w-3/4 mx-auto bg-black/40 rounded-md px-4'>
           <Togglable buttonLabel='Create new blog' ref={blogFormRef}>
             <BlogForm createBlog={createBlog} />
           </Togglable>
-
-          <ol className='flex-col'>
+          <ol className='w-full flex flex-col'>
             {blogs.map(blog => (
               <Blog
                 key={blog.id}

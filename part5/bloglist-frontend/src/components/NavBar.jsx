@@ -43,7 +43,6 @@ export default function NavBar() {
   }, [scrollDir, scrollY]);
 
   {
-    console.log(navbar);
     if (scrollY === 0 || scrollDir === 'up') {
       return (
         <nav

@@ -7,8 +7,10 @@ const handleLogout = () => {
 
 const User = ({ user }) => (
   <div className='flex gap-x-2 items-center justify-center flex-wrap w-full'>
-    <b>{user.name}</b> logged in
-    <Button onClick={handleLogout} text='Log out' btn='btn-logout' />
+    <b>{user.name}</b>
+    <div className=' text-xs'>
+      <Button onClick={handleLogout} text='Log out' btn='btn-logout' />
+    </div>
   </div>
 );
 
